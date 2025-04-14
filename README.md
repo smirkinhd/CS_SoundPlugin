@@ -1,5 +1,6 @@
 # CS_SoundPlugin
 Звуковой плагин для Counter Strike 2
+
 Код, чтобы не засорять репу, лежит в ветке [master](https://github.com/smirkinhd/CS_SoundPlugin/tree/master) (но там нет ничего интересного)
 
 ## Описание
