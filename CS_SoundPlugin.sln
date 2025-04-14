@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_SoundPlugin", "CS_SoundPlugin\CS_SoundPlugin.csproj", "{2634DEE8-C1D6-46AC-8FB1-1737923368AC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2634DEE8-C1D6-46AC-8FB1-1737923368AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2634DEE8-C1D6-46AC-8FB1-1737923368AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2634DEE8-C1D6-46AC-8FB1-1737923368AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2634DEE8-C1D6-46AC-8FB1-1737923368AC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F584ABE0-9928-4030-8D16-C632ED0D4228}
+	EndGlobalSection
+EndGlobal
