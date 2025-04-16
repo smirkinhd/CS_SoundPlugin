@@ -2,6 +2,7 @@
 using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Core.Attributes.Registration;
 using CounterStrikeSharp.API.Modules.Commands;
+using CounterStrikeSharp.API.Modules.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,52 @@ namespace CS_SoundPlugin
         {
             base.Load(hotReload);
             RegisterListener<Listeners.OnClientConnected>(OnClientConnected);
+            RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
+        }
+
+        private HookResult OnPlayerDeath(EventPlayerDeath @event, GameEventInfo info)
+        {
+            var attacker = @event.Attacker;
+            var victim = @event.Userid;
+            var weapon = @event.Weapon;
+
+            if (attacker == null || victim == null || attacker.IsBot || victim.IsBot)
+                return HookResult.Continue;
+
+            if (weapon == "knife")
+            {
+                PlayKnifeKillSound();
+            }
+
+            return HookResult.Continue;
+        }
+
+        private void PlayKnifeKillSound()
+        {
+            try
+            {
+                string knifeSoundPath = Config.MusicList.FirstOrDefault()?.Knife ?? string.Empty;
+                if (string.IsNullOrEmpty(knifeSoundPath))
+                {
+                    Server.PrintToConsole("No knife kill sound configured.");
+                    return;
+                }
+
+                var players = Utilities.GetPlayers()
+                    .Where(p => p.IsValid && !p.IsBot)
+                    .ToList();
+
+                foreach (var player in players)
+                {
+                    player.ExecuteClientCommand($"play {knifeSoundPath}");
+                }
+
+                Server.PrintToConsole($"Played knife kill sound {knifeSoundPath} for all players.");
+            }
+            catch (Exception ex)
+            {
+                Server.PrintToConsole($"Error playing knife kill sound: {ex.Message}");
+            }
         }
 
         private void OnClientConnected(int playerSlot)
@@ -104,12 +151,17 @@ namespace CS_SoundPlugin
         public string SoundMode { get; set; } = "order";
         public List<SoundItem> MusicList { get; set; } = new List<SoundItem>
         {
-            new SoundItem { Path = "zvyki/join_sound.vsnd" },
+            new SoundItem
+            {
+                Path = "zvuki/join_sound.vsnd_c",
+                Knife = "zvuki/kill_knife.vsnd_c"
+            }
         };
     }
 
     public class SoundItem
     {
         public string Path { get; set; } = string.Empty;
+        public string Knife { get; set; } = string.Empty;
     }
 }
