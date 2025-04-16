@@ -12,7 +12,7 @@ namespace CS_SoundPlugin
     public class JoinSound : BasePlugin, IPluginConfig<JoinSoundConfig>
     {
         public override string ModuleName => "CS_SoundPlugin";
-        public override string ModuleVersion => "0.0.2";
+        public override string ModuleVersion => "0.0.3";
         public override string ModuleAuthor => "SmirkinGerman";
         public JoinSoundConfig Config { get; set; } = new JoinSoundConfig();
         public void OnConfigParsed(JoinSoundConfig config)
